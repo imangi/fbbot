@@ -51,7 +51,7 @@ const getWebhook = (req, res) => {
   }
 };
 
-module.export = {
+module.exports = {
   getHomePage: getHomePage,
   postWebhook: postWebhook,
   getWebhook: getWebhook,
