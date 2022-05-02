@@ -2,9 +2,9 @@ const request = require("request");
 const dotenv = require("dotenv");
 dotenv.config();
 
-PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
-PAGE_ID = process.env.PAGE_ID;
-POST_ONE = process.env.POST_ONE;
+let PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
+let PAGE_ID = process.env.PAGE_ID;
+let POST_ONE = process.env.POST_ONE;
 
 const getPostOne = () => {
   return new Promise((resolve, reject) => {
