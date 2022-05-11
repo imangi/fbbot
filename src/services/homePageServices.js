@@ -1,5 +1,6 @@
 const request = require("request");
 const dotenv = require("dotenv");
+const getUserName = require("./getUserName");
 dotenv.config();
 
 let PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
@@ -33,6 +34,7 @@ const getPostOne = () => {
       );
     } catch (e) {
       reject(e);
+      console.log(e);
     }
   });
 };
@@ -41,42 +43,13 @@ const postOne = (req, res) => {
   return new Promise(async (resolve, reject) => {
     try {
       let comment_id = await getPostOne.comment_id;
+      let userName = await getUserName.getFacebookUserName;
       let request_body = {
         recipient: {
           id: comment_id,
         },
         message: {
-          attachment: {
-            type: "template",
-            payload: {
-              template_type: "generic",
-              elements: [
-                {
-                  title: "Welcome!",
-                  image_url:
-                    "https://raw.githubusercontent.com/fbsamples/original-coast-clothing/main/public/styles/male-work.jpg",
-                  subtitle: "We have the right hat for everyone.",
-                  default_action: {
-                    type: "web_url",
-                    url: "https://www.originalcoastclothing.com/",
-                    webview_height_ratio: "tall",
-                  },
-                  buttons: [
-                    {
-                      type: "web_url",
-                      url: "https://www.originalcoastclothing.com/",
-                      title: "View Website",
-                    },
-                    {
-                      type: "postback",
-                      title: "Start Chatting",
-                      payload: "DEVELOPER_DEFINED_PAYLOAD",
-                    },
-                  ],
-                },
-              ],
-            },
-          },
+          text: `Hi ${userName} test test test`,
         },
       };
 

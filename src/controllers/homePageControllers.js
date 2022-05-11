@@ -3,6 +3,8 @@ dotenv.config();
 const request = require("request");
 
 const MY_VERIFY_TOKEN = process.env.MY_VERIFY_TOKEN;
+const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
+const PAGE_ID = process.env.PAGE_ID;
 
 const getHomePage = (req, res) => {
   return res.render("homePage.ejs");
@@ -31,7 +33,35 @@ const getWebhook = (req, res) => {
   }
 };
 
+const connectPage = (req, res) => {
+  return new Promise((resolve, reject) => {
+    try {
+      let URL = `https://graph.facebook.com/${PAGE_ID}/subscribed_apps?subscribed_fields=feed&access_token=${PAGE_ACCESS_TOKEN}`;
+
+      request(
+        {
+          uri: URL,
+          method: POST,
+        },
+        (err, res) => {
+          if (!err) {
+            console.log("success");
+            resolve();
+          } else {
+            reject(err);
+            console.log(err);
+          }
+        }
+      );
+    } catch (e) {
+      reject(e);
+      console.log(e);
+    }
+  });
+};
+
 module.exports = {
   getHomePage: getHomePage,
   getWebhook: getWebhook,
+  connectPage: connectPage,
 };
