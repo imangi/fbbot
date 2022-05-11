@@ -45,7 +45,7 @@ const connectPage = (req, res) => {
         },
         (err, res) => {
           if (!err) {
-            console.log("success");
+            console.log(res);
             resolve();
           } else {
             reject(err);
