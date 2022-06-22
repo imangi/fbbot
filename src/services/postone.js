@@ -8,8 +8,8 @@ let POST_ONE = process.env.POST_ONE;
 
 const getPostOne = (app) => {
   app(
-    `https://graph.facebook.com/${PAGE_ID}/subscribed_apps?subscribed_fields=feed&access_token=${PAGE_ACCESS_TOKEN}`
-  ).post((req, res) => {
+    `https://graph.facebook.com/:post_id/subscribed_apps?subscribed_fields=feed&access_token=${PAGE_ACCESS_TOKEN}`
+  ).post((req, res, next) => {
     let body = req.body;
     res.send(body);
   });
