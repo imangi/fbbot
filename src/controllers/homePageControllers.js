@@ -37,11 +37,14 @@ const connectPage = (req, res) => {
   return new Promise((resolve, reject) => {
     try {
       let URL = `https://graph.facebook.com/${PAGE_ID}/subscribed_apps?subscribed_fields=feed&access_token=${PAGE_ACCESS_TOKEN}`;
-
+      let request_body = {
+        success: true,
+      };
       request(
         {
           uri: URL,
           method: POST,
+          json: request_body,
         },
         (err, res) => {
           if (!err) {
