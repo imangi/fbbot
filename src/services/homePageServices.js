@@ -6,7 +6,7 @@ dotenv.config();
 
 let PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 
-const postOne = (req, res) => {
+/*const postOne = (req, res) => {
   return new Promise(async (resolve, reject) => {
     try {
       let COMMENT_ID = await getPostOne.getPostOne;
@@ -42,4 +42,4 @@ const postOne = (req, res) => {
 
 module.exports = {
   postOne: postOne,
-};
+};*/
