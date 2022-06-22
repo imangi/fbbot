@@ -12,6 +12,7 @@ const getPostOne = (app) => {
   ).post((req, res, next) => {
     let body = req.body;
     res.send(body);
+    next();
   });
 };
 /*const getPostOne = () => {
