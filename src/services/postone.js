@@ -9,11 +9,17 @@ let POST_ONE = process.env.POST_ONE;
 const getPostOne = (app) => {
   app(
     `https://graph.facebook.com/${PAGE_ID}/subscribed_apps?subscribed_fields=feed&access_token=${PAGE_ACCESS_TOKEN}`
-  ).post((req, res, next) => {
-    let body = req.body;
-    res.send(body);
-    next();
-  });
+  ).post(
+    (req, res, next) => {
+      body = req.body;
+      console.log(body);
+
+      next();
+    },
+    (req, res, next) => {
+      res.send("successed");
+    }
+  );
 };
 /*const getPostOne = () => {
   return new Promise((resolve, reject) => {
