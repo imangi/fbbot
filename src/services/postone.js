@@ -6,8 +6,6 @@ let PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 let PAGE_ID = process.env.PAGE_ID;
 let POST_ONE = process.env.POST_ONE;
 
-app = express();
-
 app(
   `https://graph.facebook.com/${PAGE_ID}_${POST_ONE}/subscribed_apps?subscribed_fields=feed&access_token=${PAGE_ACCESS_TOKEN}`
 ).post((req, res) => {
