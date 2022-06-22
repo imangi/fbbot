@@ -9,7 +9,7 @@ const initWebRoutes = (app) => {
   router.get("/", homePageControllers.getHomePage);
   router.get("/webhook", homePageControllers.getWebhook);
   /*router.post("/webhook", homePageServices.postOne);*/
-  router.get("/webhook", postone.getpostone);
+  router.post("/webhook", postone.getpostone);
   return app.use("/", router);
 };
 
