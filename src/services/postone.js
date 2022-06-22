@@ -19,7 +19,6 @@ const getPostOne = () => {
         },
         (err, res, body) => {
           if (!err) {
-            body = JSON.parse(body);
             /*for (let i = 0; i < data.length; i++) {
               data[i].id;
             }
@@ -41,3 +40,5 @@ const getPostOne = () => {
 };
 
 module.exports = getPostOne;
+
+//${PAGE_ACCESS_TOKEN}`;
