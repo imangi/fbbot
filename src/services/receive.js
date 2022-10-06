@@ -1,6 +1,6 @@
 const GraphApi = require("./graphApi.js");
 const dotenv = require("dotenv");
-const user = require("user");
+const user = require("./user");
 
 const Response = require("./response.js");
 
