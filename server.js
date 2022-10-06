@@ -25,11 +25,11 @@ const MY_VERIFY_TOKEN = process.env.MY_VERIFY_TOKEN;
 
 let users = {};
 
-/*app.get("/", (req, res) => {
+app.get("/", (req, res) => {
   return res.render("homePage.ejs");
-});*/
+});
 app.get("/privacy-policy", (req, res) => {
-  return res.render("privacy-policy.html");
+  return res.render("privacy-policy.ejs");
 });
 
 app.get("/webhook", (req, res) => {
