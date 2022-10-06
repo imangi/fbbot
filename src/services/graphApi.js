@@ -38,8 +38,8 @@ class GraphApi {
 
     let url = new URL(`${API_URL}/${PAGE_ID}/subscribed_apps`);
     url.search = new URLSearchParams({
-      access_token: `${PAGE_ACCESS_TOKEN}`,
       subscribed_feilds: `feed`,
+      access_token: `${PAGE_ACCESS_TOKEN}`,
     });
     let response = await axios.post(url, {
       headers: { "Content-Type": "application/json" },
