@@ -14,7 +14,7 @@ const WEBHOOK_URL = process.env.WEBHOOK_URL;
 const APP_SECRET = process.env.APP_SECRET;
 
 class GraphApi {
-  async callSendApi(requestBody) {
+  static async callSendApi(requestBody) {
     let url = new URL(`${API_URL}/${PAGE_ID}/messages`);
     url.search = new URLSearchParams({
       access_token: PAGE_ACCESS_TOKEN,
@@ -30,7 +30,7 @@ class GraphApi {
     }
   }
 
-  async callSubscriptionsAPI() {
+  static async callSubscriptionsAPI() {
     // Send the HTTP request to the Subscriptions Edge to configure your webhook
     // You can use the Graph API's /{app-id}/subscriptions edge to configure and
     // manage your app's Webhooks product
@@ -54,7 +54,7 @@ class GraphApi {
     }
   }
 
-  async callMessengerProfileAPI(requestBody) {
+  static async callMessengerProfileAPI(requestBody) {
     // Send the HTTP request to the Messenger Profile API
 
     console.log(`Setting Messenger Profile for app ${config.appId}`);
@@ -76,7 +76,7 @@ class GraphApi {
     }
   }
 
-  async getUserProfile(senderPsid) {
+  static async getUserProfile(senderPsid) {
     let url = new URL(`${API_URL}/${senderPsid}`);
     url.search = new URLSearchParams({
       access_token: PAGE_ACCESS_TOKEN,
