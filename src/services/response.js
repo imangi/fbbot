@@ -7,7 +7,7 @@ class Response {
     return response;
   }
 
-  genMessage(user) {
+  static genMessage(user) {
     let welcome = this.genText(
       `Hi ${user.firstName}!, welcome to Daisy Bloom 💛
         This is an automated reply to your comment made on our page.

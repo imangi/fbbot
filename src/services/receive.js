@@ -14,7 +14,7 @@ class Receive {
   }
 
   handlePrivateReply(type, object_id) {
-    let response = Response.genMessage(user);
+    Response.genMessage(user);
 
     let requestBody = {
       recipient: {
