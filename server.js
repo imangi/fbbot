@@ -107,7 +107,9 @@ app.post("/webhook", (req, res) => {
         }
 
         // Get the sender PSID
-        let senderPsid = webhook_event.sender.id;
+        let senderPsid = webhookEvent.sender.id;
+        let user_ref = webhookEvent.sender.user_ref;
+        let guestUser = isGuestUser(webhookEvent);
 
         if (senderPsid != null && senderPsid != undefined) {
           if (!(senderPsid in users)) {
