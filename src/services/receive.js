@@ -1,7 +1,6 @@
 const GraphApi = require("./graphApi.js");
 const dotenv = require("dotenv");
-const user = require("./user");
-
+const message = require("../message/message.json");
 const Response = require("./response.js");
 
 dotenv.config();
@@ -14,13 +13,14 @@ class Receive {
   }
 
   handlePrivateReply(type, object_id) {
-    Response.genMessage(user);
+    let welcomeMessage = message.welcome;
+    let response = Response.genText(welcomeMessage);
 
     let requestBody = {
       recipient: {
         [type]: object_id,
       },
-      message: Response,
+      message: response,
     };
     GraphApi.callSendApi(requestBody);
   }

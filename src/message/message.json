@@ -1,0 +1,6 @@
+{
+  "welcome": [
+    "Hi {{userFirstName}}!, welcome to Daisy Bloom 💛. This is an automated reply to your comment made on our page. One of our team members will get back to you shortly",
+    " Hi {{userFirstname}}, Daisy Bloom වෙත සාදරයෙන් පිළිගනිමු.💛 අපගේ කණ්ඩායමේ සාමාජිකයෙකු ඔබ හා සම්බන්ධ වනු ඇත"
+  ]
+}
