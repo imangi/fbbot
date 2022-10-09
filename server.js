@@ -91,54 +91,55 @@ app.post("/webhook", (req, res) => {
         }
       }
 
-      entry.messaging.forEach(async function (webhookEvent) {
-        // Discard uninteresting events
-        if ("read" in webhookEvent) {
-          console.log("Got a read event");
-          return;
-        } else if ("delivery" in webhookEvent) {
-          console.log("Got a delivery event");
-          return;
-        } else if (webhookEvent.message && webhookEvent.message.is_echo) {
-          console.log(
-            "Got an echo of our send, mid = " + webhookEvent.message.mid
-          );
-          return;
-        }
-
-        // Get the sender PSID
-        let senderPsid = webhookEvent.sender.id;
-        let user_ref = webhookEvent.sender.user_ref;
-        let guestUser = isGuestUser(webhookEvent);
-
-        if (senderPsid != null && senderPsid != undefined) {
-          if (!(senderPsid in users)) {
-            if (!guestUser) {
-              // Make call to UserProfile API only if user is not guest
-              let user = new User(senderPsid);
-              GraphApi.getUserProfile(senderPsid)
-                .then((userProfile) => {
-                  user.setProfile(userProfile);
-                })
-                .catch((error) => {
-                  // The profile is unavailable
-                  console.log(JSON.stringify(body));
-                  console.log("Profile is unavailable:", error);
-                });
-            } else {
-              setDefaultUser(senderPsid);
-              return receiveAndReturn(users[senderPsid], webhookEvent, false);
-            }
+      entry.messaging &&
+        entry.messaging.forEach(async function (webhookEvent) {
+          // Discard uninteresting events
+          if ("read" in webhookEvent) {
+            console.log("Got a read event");
+            return;
+          } else if ("delivery" in webhookEvent) {
+            console.log("Got a delivery event");
+            return;
+          } else if (webhookEvent.message && webhookEvent.message.is_echo) {
+            console.log(
+              "Got an echo of our send, mid = " + webhookEvent.message.mid
+            );
+            return;
           }
 
-          // Check if the event is a message or postback and
-          // pass the event to the appropriate handler function
-        } else if (user_ref != null && user_ref != undefined) {
-          // Handle user_ref
-          setDefaultUser(user_ref);
-          return receiveAndReturn(users[user_ref], webhookEvent, true);
-        }
-      });
+          // Get the sender PSID
+          let senderPsid = webhookEvent.sender.id;
+          let user_ref = webhookEvent.sender.user_ref;
+          let guestUser = isGuestUser(webhookEvent);
+
+          if (senderPsid != null && senderPsid != undefined) {
+            if (!(senderPsid in users)) {
+              if (!guestUser) {
+                // Make call to UserProfile API only if user is not guest
+                let user = new User(senderPsid);
+                GraphApi.getUserProfile(senderPsid)
+                  .then((userProfile) => {
+                    user.setProfile(userProfile);
+                  })
+                  .catch((error) => {
+                    // The profile is unavailable
+                    console.log(JSON.stringify(body));
+                    console.log("Profile is unavailable:", error);
+                  });
+              } else {
+                setDefaultUser(senderPsid);
+                return receiveAndReturn(users[senderPsid], webhookEvent, false);
+              }
+            }
+
+            // Check if the event is a message or postback and
+            // pass the event to the appropriate handler function
+          } else if (user_ref != null && user_ref != undefined) {
+            // Handle user_ref
+            setDefaultUser(user_ref);
+            return receiveAndReturn(users[user_ref], webhookEvent, true);
+          }
+        });
     });
     // Returns a '200 OK' response to all requests
     res.status(200).send("EVENT_RECEIVED");
