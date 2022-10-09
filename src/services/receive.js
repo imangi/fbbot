@@ -5,7 +5,7 @@ const Response = require("./response.js");
 
 dotenv.config();
 
-class Receive {
+module.exports = class Receive {
   constructor(user, webhookEvent, isUserRef) {
     this.user = user;
     this.webhookEvent = webhookEvent;
@@ -24,9 +24,7 @@ class Receive {
     };
     GraphApi.callSendApi(requestBody);
   }
-}
-
-module.exports = Receive;
+};
 
 /*const handlePrivateReply = async (type, object_id) => {
   // let url = `https://graph.facebook.com/v13.0/me/messages?access_token=${PAGE_ACCESS_TOKEN}`;
