@@ -15,11 +15,12 @@ const APP_SECRET = process.env.APP_SECRET;
 
 class GraphApi {
   static async callSendApi(requestBody) {
-    let url = new URL(
-      encodeURI(
-        `${API_URL}/${PAGE_ID}/messages?access_token=${PAGE_ACCESS_TOKEN}`
-      )
-    );
+    let url = new URL(`${API_URL}/${PAGE_ID}/messages`, {
+      params: {
+        access_token: `${PAGE_ACCESS_TOKEN}`,
+      },
+    });
+
     /* url.search = new URLSearchParams({
       access_token: `${PAGE_ACCESS_TOKEN}`,
     });*/
@@ -41,10 +42,11 @@ class GraphApi {
     // manage your app's Webhooks product
     // https://developers.facebook.com/docs/graph-api/webhooks/subscriptions-edge
 
-    let url = new URL(`${API_URL}/${PAGE_ID}/subscribed_apps`);
-    url.search = new URLSearchParams({
-      subscribed_feilds: `feed`,
-      access_token: `${PAGE_ACCESS_TOKEN}`,
+    let url = new URL(`${API_URL}/${PAGE_ID}/subscribed_apps`, {
+      params: {
+        subscribed_feilds: `feed`,
+        access_token: `${PAGE_ACCESS_TOKEN}`,
+      },
     });
     let response = await axios.post(url, {
       headers: { "Content-Type": "application/json" },
