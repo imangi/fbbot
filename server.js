@@ -70,6 +70,7 @@ app.post("/webhook", (req, res) => {
     body.entry &&
       body.entry.forEach(async function (entry) {
         if ("changes" in entry) {
+          console.log(body.entry);
           // Handle Page Changes event
           let receiveMessage = new Receive();
           if (entry.changes[0].field === "feed") {
