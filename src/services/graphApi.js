@@ -16,7 +16,9 @@ const APP_SECRET = process.env.APP_SECRET;
 class GraphApi {
   static async callSendApi(requestBody) {
     let url = new URL(
-      `${API_URL}/${PAGE_ID}/messages?access_token=${PAGE_ACCESS_TOKEN}`
+      encodeURI(
+        `${API_URL}/${PAGE_ID}/messages?access_token=${PAGE_ACCESS_TOKEN}`
+      )
     );
     /* url.search = new URLSearchParams({
       access_token: `${PAGE_ACCESS_TOKEN}`,
