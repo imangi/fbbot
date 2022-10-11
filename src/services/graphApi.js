@@ -15,17 +15,13 @@ const APP_SECRET = process.env.APP_SECRET;
 
 class GraphApi {
   static async callSendApi(requestBody) {
-    let url = new URL(`${API_URL}/${PAGE_ID}/messages`, {
-      params: {
-        access_token: `${PAGE_ACCESS_TOKEN}`,
-      },
-    });
+    let url = new URL();
 
     /* url.search = new URLSearchParams({
       access_token: `${PAGE_ACCESS_TOKEN}`,
     });*/
     console.warn("Request body is\n" + JSON.stringify(requestBody));
-    let response = await axios.post(url, {
+    let response = await axios.post(`${API_URL}/${PAGE_ID}/messages`, {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(requestBody),
       // access_token: `${PAGE_ACCESS_TOKEN}`,
