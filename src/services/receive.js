@@ -6,11 +6,11 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 module.exports = class Receive {
-  constructor(user, webhookEvent, isUserRef) {
+  /*constructor(user, webhookEvent, isUserRef) {
     this.user = user;
     this.webhookEvent = webhookEvent;
     this.isUserRef = isUserRef;
-  }
+  }*/
 
   handlePrivateReply(type, object_id, userName) {
     let requestBody = {

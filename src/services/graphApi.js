@@ -22,17 +22,11 @@ module.exports = class GraphApi {
     });*/
     console.warn("Request body is\n" + JSON.stringify(requestBody));
 
-    let response = await axios.post(
-      `${API_URL}/${PAGE_ID}/messages`,
-      {
-        params: { access_token: `${PAGE_ACCESS_TOKEN}` },
-      },
-
-      {
-        body: JSON.stringify(requestBody),
-        headers: { "Content-Type": "application/json" },
-      }
-    );
+    let response = await axios.post(`${API_URL}/${PAGE_ID}/messages`, {
+      body: JSON.stringify(requestBody),
+      headers: { "Content-Type": "application/json" },
+      params: { access_token: `${PAGE_ACCESS_TOKEN}` },
+    });
     if (!response.ok) {
       consoleconst`Unable to call Send API: ${response.statusText}`,
         await response.json();
