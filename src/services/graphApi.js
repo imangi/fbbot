@@ -13,7 +13,7 @@ const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 const WEBHOOK_URL = process.env.WEBHOOK_URL;
 const APP_SECRET = process.env.APP_SECRET;
 
-class GraphApi {
+module.exports = class GraphApi {
   static async callSendApi(requestBody) {
     // let url = new URL();
 
@@ -63,7 +63,7 @@ class GraphApi {
       );
     }
   }
-}
+};
 
 /*static async callMessengerProfileAPI(requestBody) {
     // Send the HTTP request to the Messenger Profile API
