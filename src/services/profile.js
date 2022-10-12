@@ -1,4 +1,4 @@
-const GraphApi = require("./graph-api");
+/*const GraphApi = require("./graph-api");
 const message = require("../message/message.json");
 
 module.exports = class Profile {
@@ -26,4 +26,4 @@ module.exports = class Profile {
     console.log({ Greeting });
     return Greeting;
   }
-};
+};*/

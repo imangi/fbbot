@@ -63,8 +63,9 @@ class GraphApi {
       );
     }
   }
+}
 
-  static async callMessengerProfileAPI(requestBody) {
+/*static async callMessengerProfileAPI(requestBody) {
     // Send the HTTP request to the Messenger Profile API
 
     console.log(`Setting Messenger Profile for app ${config.appId}`);

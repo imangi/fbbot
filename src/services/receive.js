@@ -1,7 +1,7 @@
 const GraphApi = require("./graphApi.js");
 const dotenv = require("dotenv");
-const message = require("../message/message.json");
-const Response = require("./response.js");
+//const message = require("../message/message.json");
+//const Response = require("./response.js");
 
 dotenv.config();
 

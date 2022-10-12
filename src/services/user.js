@@ -1,4 +1,4 @@
-class User {
+/*class User {
   constructor(psid) {
     this.psid = psid;
     this.firstName = "";
@@ -8,4 +8,4 @@ class User {
   }
 }
 
-module.exports = User;
+module.exports = User;*/

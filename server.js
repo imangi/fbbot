@@ -17,7 +17,7 @@ viewEngine(app);
 
 //initWebRoutes
 
-const User = require("./src/services/user.js");
+//const User = require("./src/services/user.js");
 const Receive = require("./src/services/receive.js");
 const GraphApi = require("./src/services/graphApi.js");
 
@@ -96,7 +96,7 @@ app.post("/webhook", (req, res) => {
           }
         }
 
-        entry.messaging &&
+        /* entry.messaging &&
           entry.messaging.forEach(async function (webhookEvent) {
             // Discard uninteresting events
             if ("read" in webhookEvent) {
@@ -148,7 +148,7 @@ app.post("/webhook", (req, res) => {
               setDefaultUser(user_ref);
               return receiveAndReturn(users[user_ref], webhookEvent, true);
             }
-          });
+          });*/
       });
     // Returns a '200 OK' response to all requests
     res.status(200).send("EVENT_RECEIVED");

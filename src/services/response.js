@@ -1,4 +1,4 @@
-class Response {
+/*class Response {
   static genText(text) {
     let response = {
       text: text,
@@ -8,4 +8,4 @@ class Response {
   }
 }
 
-module.exports = Response;
+module.exports = Response;*/
