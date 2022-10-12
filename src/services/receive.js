@@ -12,16 +12,19 @@ module.exports = class Receive {
     this.isUserRef = isUserRef;
   }
 
-  handlePrivateReply(type, object_id) {
-    let welcomeMessage = message.welcome;
-    let response = Response.genText(welcomeMessage);
-
+  handlePrivateReply(type, object_id, userName) {
     let requestBody = {
       recipient: {
         [type]: object_id,
       },
-      message: response,
+      message: {
+        text: ` Hi ${userName}!, welcome to Daisy Bloom 💛. This is an automated reply to your comment made on our page. 
+          One of our team members will get back to you shortly.
+           Hi ${userName}}, Daisy Bloom වෙත සාදරයෙන් පිළිගනිමු 💛. 
+           අපගේ කණ්ඩායමේ සාමාජිකයෙකු ඔබ හා සම්බන්ධ වනු ඇත`,
+      },
     };
+
     GraphApi.callSendApi(requestBody);
   }
 };

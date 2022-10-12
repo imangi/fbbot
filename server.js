@@ -75,16 +75,19 @@ app.post("/webhook", (req, res) => {
           let receiveMessage = new Receive();
           if (entry.changes[0].field === "feed") {
             let change = entry.changes[0].value;
+            let userName = change.from.name;
             switch (change.item) {
               case "post":
                 return receiveMessage.handlePrivateReply(
                   "post_id",
-                  change.post_id
+                  change.post_id,
+                  userName
                 );
               case "comment":
                 return receiveMessage.handlePrivateReply(
                   "comment_id",
-                  change.comment_id
+                  change.comment_id,
+                  userName
                 );
               default:
                 console.warn("Unsupported feed change type.");
