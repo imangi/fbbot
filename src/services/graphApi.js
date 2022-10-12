@@ -28,9 +28,8 @@ class GraphApi {
         params: { access_token: `${PAGE_ACCESS_TOKEN}` },
       },
       {
-        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(requestBody),
-        // access_token: `${PAGE_ACCESS_TOKEN}`,
+        headers: { "Content-Type": "application/json" },
       }
     );
     if (!response.ok) {

@@ -77,10 +77,13 @@ app.post("/webhook", (req, res) => {
             let change = entry.changes[0].value;
             switch (change.item) {
               case "post":
-                return receiveMessage.handlePrivateReply("id", change.post_id);
+                return receiveMessage.handlePrivateReply(
+                  "post_id",
+                  change.post_id
+                );
               case "comment":
                 return receiveMessage.handlePrivateReply(
-                  "id",
+                  "comment_id",
                   change.comment_id
                 );
               default:
