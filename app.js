@@ -1,19 +1,17 @@
 const express = require("express");
-const viewEngine = require("./src/config/viewEngine.js");
 
 const dotenv = require("dotenv");
-const path = require("path");
+
+const cors = require("cors");
 
 dotenv.config();
 
 let app = express();
 
+app.use(cors());
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-//config view engine
-
-viewEngine(app);
 
 //initWebRoutes
 
@@ -25,15 +23,7 @@ const MY_VERIFY_TOKEN = process.env.MY_VERIFY_TOKEN;
 
 let users = {};
 
-app.get("/", (req, res) => {
-  return res.render("homePage.ejs");
-});
-app.get("/privacy-policy", (req, res) => {
-  return res.render("privacy-policy.ejs");
-});
-
 app.get("/webhook", (req, res) => {
-  // Your verify token. Should be a random string.
   let VERIFY_TOKEN = MY_VERIFY_TOKEN;
 
   // Parse the query params
@@ -95,60 +85,6 @@ app.post("/webhook", (req, res) => {
             }
           }
         }
-
-        /* entry.messaging &&
-          entry.messaging.forEach(async function (webhookEvent) {
-            // Discard uninteresting events
-            if ("read" in webhookEvent) {
-              console.log("Got a read event");
-              return;
-            } else if ("delivery" in webhookEvent) {
-              console.log("Got a delivery event");
-              return;
-            } else if (webhookEvent.message && webhookEvent.message.is_echo) {
-              console.log(
-                "Got an echo of our send, mid = " + webhookEvent.message.mid
-              );
-              return;
-            }
-
-            // Get the sender PSID
-            let senderPsid = webhookEvent.sender.id;
-            let user_ref = webhookEvent.sender.user_ref;
-            let guestUser = isGuestUser(webhookEvent);
-
-            if (senderPsid != null && senderPsid != undefined) {
-              if (!(senderPsid in users)) {
-                if (!guestUser) {
-                  // Make call to UserProfile API only if user is not guest
-                  let user = new User(senderPsid);
-                  GraphApi.getUserProfile(senderPsid)
-                    .then((userProfile) => {
-                      user.setProfile(userProfile);
-                    })
-                    .catch((error) => {
-                      // The profile is unavailable
-                      console.log(JSON.stringify(body));
-                      console.log("Profile is unavailable:", error);
-                    });
-                } else {
-                  setDefaultUser(senderPsid);
-                  return receiveAndReturn(
-                    users[senderPsid],
-                    webhookEvent,
-                    false
-                  );
-                }
-              }
-
-              // Check if the event is a message or postback and
-              // pass the event to the appropriate handler function
-            } else if (user_ref != null && user_ref != undefined) {
-              // Handle user_ref
-              setDefaultUser(user_ref);
-              return receiveAndReturn(users[user_ref], webhookEvent, true);
-            }
-          });*/
       });
     // Returns a '200 OK' response to all requests
     res.status(200).send("EVENT_RECEIVED");
@@ -158,7 +94,7 @@ app.post("/webhook", (req, res) => {
   }
 });
 
-let PORT = process.env.PORT || 443;
+let PORT = process.env.PORT || 5555;
 
 app.listen(PORT, () => {
   console.log(`messenger bot is running at port ${PORT}`);
