@@ -94,8 +94,9 @@ app.post("/webhook", (req, res) => {
   }
 });
 
-let PORT = process.env.PORT || 5555;
+let PORT = process.env.PORT || 5544;
+let HOST = "104.152.222.93";
 
 app.listen(PORT, () => {
-  console.log(`messenger bot is running at port ${PORT}`);
+  console.log(`messenger bot is running on "http://${HOST}:${PORT}/"`);
 });
